@@ -2,10 +2,12 @@
 <testng-results skipped="0" failed="0" total="0" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="5" started-at="2013-06-12T18:12:18Z" finished-at="2013-06-12T18:12:18Z">
+  <suite name="sneakpeeq example" duration-ms="29" started-at="2013-08-02T22:45:18Z" finished-at="2013-08-02T22:45:18Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="5" started-at="2013-06-12T18:12:18Z" finished-at="2013-06-12T18:12:18Z">
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    <test name="Test 1" duration-ms="5" started-at="2013-08-02T22:45:18Z" finished-at="2013-08-02T22:45:18Z">
+    </test> <!-- Test 1 -->
+    <test name="Test 2" duration-ms="1" started-at="2013-08-02T22:45:18Z" finished-at="2013-08-02T22:45:18Z">
+    </test> <!-- Test 2 -->
+  </suite> <!-- sneakpeeq example -->
 </testng-results>

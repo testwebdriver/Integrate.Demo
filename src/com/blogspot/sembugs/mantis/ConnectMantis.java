@@ -39,7 +39,7 @@ public class ConnectMantis implements IConstantes {
     }
 
     
-    public static IMCSession getSessao() throws MalformedURLException, MCException {
+    public static IMCSession getSession() throws MalformedURLException, MCException {
         if (session == null) {
             getInstance();
         }

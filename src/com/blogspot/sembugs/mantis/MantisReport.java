@@ -15,23 +15,23 @@ import com.blogspot.sembugs.util.IConstantes;
 public class MantisReport implements IConstantes {
 
 	
-	public static String reporIssue(String sumario, String descricao, String categoria, String informacaoAdicional, String evidencia, String nomeArquivo) {
+	public static String reporIssue(String summary, String descri, String categoria, String informAdi, String evidence, String nameArchive) {
 	
-		IMCSession sessao = null;
-		String arquivo = nomeArquivo + ".png";
+		IMCSession sessions = null;
+		String archive = nameArchive + ".png";
 		String bugID= null;
 		try {
 			
-			// efetua a conexao com o Mantis atraves do Singleton
-			sessao = ConnectMantis.getSessao();
 			
-			// objeto que representa um projeto no Mantis
-			IProject projeto = sessao.getProject(PROJET);
+			sessions = ConnectMantis.getSession();
 			
-			// objeto que representa uma issue (bug) no Mantis
+			
+			IProject projet = sessions.getProject(PROJET);
+			
+			
             Issue issue = new Issue();
             
-            issue.setProject(new MCAttribute(projeto.getId(), projeto.getName()));
+            issue.setProject(new MCAttribute(projet.getId(), projet.getName()));
             issue.setAdditionalInformation(null);
             issue.setOs(System.getProperty("os.name"));
             issue.setOsBuild(System.getProperty("os.version"));
@@ -39,22 +39,22 @@ public class MantisReport implements IConstantes {
             issue.setSeverity(new MCAttribute(70, "crash"));
             issue.setReproducibility(new MCAttribute(10, "always"));
             
-            // abaixo o sumario sera apresentado com a data. Remova o sumario em execução fora de testes
-            issue.setSummary(sumario + new Date());
-            issue.setDescription(descricao);
+            
+            issue.setSummary(summary + new Date());
+            issue.setDescription(descri);
             issue.setCategory(categoria);
             issue.setPriority(new MCAttribute(40, "high"));
-            issue.setAdditionalInformation(informacaoAdicional);
+            issue.setAdditionalInformation(informAdi);
             
-            // submete o bug no Mantis
-            long id = sessao.addIssue(issue);     
-            sessao.addIssueAttachment(id, arquivo, "image/png", Base64.decodeBase64(evidencia));
+          
+            long id = sessions.addIssue(issue);     
+            sessions.addIssueAttachment(id, archive, "image/png", Base64.decodeBase64(evidence));
             bugID = String.valueOf (id); 
 		} catch (MalformedURLException e) {
-			System.err.println("Erro n0 URL access to Mantis");
+			System.err.println("Error no URL access to Mantis");
 			e.printStackTrace();
 		} catch (MCException e) {
-			System.err.println("Erro no connection to mantis");
+			System.err.println("Error no connection to mantis");
 			e.printStackTrace();
 		}
 		
